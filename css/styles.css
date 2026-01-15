@@ -1,11 +1,4 @@
-/* Custom styles for Library Management System */
-/* Enhanced UI/UX with animations, transitions, and responsiveness */
-
-/* ==========================================
-   BASE STYLES & VARIABLES
-   ========================================== */
-
-:root {
+﻿:root {
     --primary-50: #eef2ff;
     --primary-100: #e0e7ff;
     --primary-500: #6366f1;
@@ -20,26 +13,22 @@
     --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
-/* Smooth scroll for all elements */
 html {
     scroll-behavior: smooth;
 }
 
-/* Better focus styles for accessibility */
 *:focus-visible {
     outline: 2px solid var(--primary-500);
     outline-offset: 2px;
 }
 
-/* ==========================================
-   SIDEBAR STYLES
-   ========================================== */
+
 
 .sidebar-transition {
     transition: transform var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Custom scrollbar for sidebar */
+
 .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
 }
@@ -57,7 +46,7 @@ html {
     background: rgba(255, 255, 255, 0.5);
 }
 
-/* Nav item animations */
+
 .nav-item {
     position: relative;
     transition: all var(--transition-fast) ease;
@@ -94,11 +83,9 @@ html {
     transform: translateX(0);
 }
 
-/* ==========================================
-   ANIMATIONS
-   ========================================== */
 
-/* Fade in up animation */
+
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -111,7 +98,7 @@ html {
     }
 }
 
-/* Fade in animation */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -122,7 +109,7 @@ html {
     }
 }
 
-/* Scale in animation */
+
 @keyframes scaleIn {
     from {
         opacity: 0;
@@ -135,7 +122,7 @@ html {
     }
 }
 
-/* Slide in from right */
+
 @keyframes slideInRight {
     from {
         opacity: 0;
@@ -148,7 +135,7 @@ html {
     }
 }
 
-/* Slide in from left */
+
 @keyframes slideInLeft {
     from {
         opacity: 0;
@@ -161,7 +148,7 @@ html {
     }
 }
 
-/* Pulse animation */
+
 @keyframes pulse {
 
     0%,
@@ -174,7 +161,7 @@ html {
     }
 }
 
-/* Bounce animation */
+
 @keyframes bounce {
 
     0%,
@@ -189,7 +176,7 @@ html {
     }
 }
 
-/* Shake animation */
+
 @keyframes shake {
 
     0%,
@@ -213,7 +200,7 @@ html {
     }
 }
 
-/* Spinner */
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -224,7 +211,7 @@ html {
     }
 }
 
-/* Animation classes */
+
 .animate-fade-in {
     animation: fadeIn var(--transition-normal) ease-out forwards;
 }
@@ -257,7 +244,7 @@ html {
     animation: shake 0.5s ease-in-out;
 }
 
-/* Staggered animation delays */
+
 .animation-delay-50 {
     animation-delay: 50ms;
 }
@@ -286,9 +273,7 @@ html {
     animation-delay: 500ms;
 }
 
-/* ==========================================
-   CARDS & CONTAINERS
-   ========================================== */
+
 
 .card-hover {
     transition: transform var(--transition-fast) ease,
@@ -302,7 +287,7 @@ html {
     border-color: var(--primary-100);
 }
 
-/* Glass morphism effect */
+
 .glass {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
@@ -310,7 +295,7 @@ html {
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Gradient text effect */
+
 .gradient-text {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
@@ -318,11 +303,9 @@ html {
     background-clip: text;
 }
 
-/* ==========================================
-   FORM ELEMENTS
-   ========================================== */
 
-/* Input focus effect */
+
+
 input,
 select,
 textarea {
@@ -345,7 +328,7 @@ textarea:hover:not(:focus) {
     border-color: #a5b4fc;
 }
 
-/* Checkbox and radio styling */
+
 input[type="checkbox"],
 input[type="radio"] {
     transition: all var(--transition-fast) ease;
@@ -356,9 +339,7 @@ input[type="radio"]:checked {
     animation: scaleIn var(--transition-fast) ease;
 }
 
-/* ==========================================
-   BUTTONS
-   ========================================== */
+
 
 button,
 .btn {
@@ -372,7 +353,7 @@ button:active,
     transform: scale(0.98);
 }
 
-/* Ripple effect for buttons */
+
 .btn-ripple::after {
     content: '';
     position: absolute;
@@ -389,16 +370,14 @@ button:active,
     transition: 0s;
 }
 
-/* Primary button hover effect */
+
 button[class*="bg-primary"]:hover,
 .btn-primary:hover {
     filter: brightness(1.1);
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
 }
 
-/* ==========================================
-   TABLES
-   ========================================== */
+
 
 .table-row-hover {
     transition: background-color var(--transition-fast) ease;
@@ -408,7 +387,7 @@ button[class*="bg-primary"]:hover,
     background: rgba(99, 102, 241, 0.05);
 }
 
-/* Sortable column header */
+
 th[data-sort] {
     cursor: pointer;
     user-select: none;
@@ -419,9 +398,7 @@ th[data-sort]:hover {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-/* ==========================================
-   MODALS
-   ========================================== */
+
 
 .modal-backdrop {
     background: rgba(0, 0, 0, 0.5);
@@ -434,9 +411,7 @@ th[data-sort]:hover {
     animation: scaleIn var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ==========================================
-   LOADING & SPINNERS
-   ========================================== */
+
 
 .spinner {
     border: 3px solid rgba(99, 102, 241, 0.2);
@@ -459,7 +434,7 @@ th[data-sort]:hover {
     border-width: 4px;
 }
 
-/* Skeleton loading */
+
 .skeleton {
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background-size: 200% 100%;
@@ -476,9 +451,7 @@ th[data-sort]:hover {
     }
 }
 
-/* ==========================================
-   TOOLTIPS
-   ========================================== */
+
 
 [data-tooltip] {
     position: relative;
@@ -521,9 +494,7 @@ th[data-sort]:hover {
     visibility: visible;
 }
 
-/* ==========================================
-   BADGES & TAGS
-   ========================================== */
+
 
 .badge {
     transition: all var(--transition-fast) ease;
@@ -533,11 +504,9 @@ th[data-sort]:hover {
     transform: scale(1.05);
 }
 
-/* ==========================================
-   SIDEBAR SPECIFIC
-   ========================================== */
 
-/* Active nav indicator */
+
+
 .nav-active-indicator {
     position: absolute;
     left: 0;
@@ -548,19 +517,15 @@ th[data-sort]:hover {
         height var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ==========================================
-   CHARTS
-   ========================================== */
+
 
 .chart-container {
     animation: fadeIn var(--transition-slow) ease-out;
 }
 
-/* ==========================================
-   RESPONSIVE STYLES
-   ========================================== */
 
-/* Hide scrollbar but allow scrolling */
+
+
 .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -570,7 +535,7 @@ th[data-sort]:hover {
     display: none;
 }
 
-/* Touch-friendly tap areas on mobile */
+
 @media (max-width: 768px) {
 
     button,
@@ -585,29 +550,29 @@ th[data-sort]:hover {
         padding: 12px 16px;
     }
 
-    /* Larger touch targets for table actions */
+    
     [data-action] {
         min-width: 40px;
         min-height: 40px;
     }
 
-    /* Adjust modal for mobile */
+    
     .modal-backdrop {
         padding: 16px;
     }
 
-    /* Full-width buttons on mobile */
+    
     .btn-mobile-full {
         width: 100%;
     }
 
-    /* Stack filter controls */
+    
     .filter-bar {
         flex-direction: column;
         gap: 12px;
     }
 
-    /* Stats grid responsive */
+    
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -618,40 +583,36 @@ th[data-sort]:hover {
         grid-template-columns: 1fr;
     }
 
-    /* Smaller text on very small screens */
+    
     .text-responsive {
         font-size: 14px;
     }
 
-    /* Hide less important columns on mobile */
+    
     .hide-mobile {
         display: none !important;
     }
 }
 
-/* Large screens */
+
 @media (min-width: 1280px) {
 
-    /* Wider containers on large screens */
+    
     .container-xl {
         max-width: 1280px;
         margin: 0 auto;
     }
 }
 
-/* ==========================================
-   DARK MODE SUPPORT (FUTURE)
-   ========================================== */
+
 
 @media (prefers-color-scheme: dark) {
     :root {
-        /* Prepare for dark mode if needed */
+        
     }
 }
 
-/* ==========================================
-   REDUCED MOTION
-   ========================================== */
+
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -668,9 +629,7 @@ th[data-sort]:hover {
     }
 }
 
-/* ==========================================
-   PRINT STYLES
-   ========================================== */
+
 
 @media print {
     .no-print {
@@ -696,24 +655,22 @@ th[data-sort]:hover {
     }
 }
 
-/* ==========================================
-   UTILITY CLASSES
-   ========================================== */
 
-/* Smooth transitions for color changes */
+
+
 .transition-colors {
     transition: color var(--transition-fast) ease,
         background-color var(--transition-fast) ease,
         border-color var(--transition-fast) ease;
 }
 
-/* No select */
+
 .no-select {
     user-select: none;
     -webkit-user-select: none;
 }
 
-/* Truncate text */
+
 .truncate-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -728,7 +685,7 @@ th[data-sort]:hover {
     overflow: hidden;
 }
 
-/* Aspect ratios */
+
 .aspect-square {
     aspect-ratio: 1;
 }
@@ -737,13 +694,13 @@ th[data-sort]:hover {
     aspect-ratio: 16/9;
 }
 
-/* Focus ring utility */
+
 .focus-ring:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4);
 }
 
-/* Empty state styling */
+
 .empty-state {
     padding: 48px 24px;
     text-align: center;

@@ -1,37 +1,25 @@
-/**
- * Global Search Module
- * Provides unified search across all entities with dropdown results
- */
-
 const GlobalSearch = {
     isOpen: false,
     searchTimeout: null,
     resultsContainer: null,
 
-    /**
-     * Initialize global search
-     */
     init() {
         const searchInput = document.getElementById('globalSearch');
         if (!searchInput) return;
 
-        // Create results dropdown
         this.createResultsDropdown(searchInput);
 
-        // Keyboard shortcut (Ctrl/Cmd + K)
         document.addEventListener('keydown', (e) => {
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                 e.preventDefault();
                 searchInput.focus();
             }
-            // Escape to close
             if (e.key === 'Escape' && this.isOpen) {
                 this.hideResults();
                 searchInput.blur();
             }
         });
 
-        // Search input events
         searchInput.addEventListener('input', (e) => {
             clearTimeout(this.searchTimeout);
             const query = e.target.value.trim();
@@ -41,7 +29,6 @@ const GlobalSearch = {
                 return;
             }
 
-            // Debounce search
             this.searchTimeout = setTimeout(() => {
                 this.performSearch(query);
             }, 200);
@@ -53,7 +40,6 @@ const GlobalSearch = {
             }
         });
 
-        // Click outside to close
         document.addEventListener('click', (e) => {
             if (!e.target.closest('#globalSearchContainer')) {
                 this.hideResults();
@@ -61,16 +47,11 @@ const GlobalSearch = {
         });
     },
 
-    /**
-     * Create the results dropdown container
-     */
     createResultsDropdown(searchInput) {
-        // Wrap search input in a container
         const parent = searchInput.parentElement;
         parent.id = 'globalSearchContainer';
         parent.classList.add('relative');
 
-        // Create dropdown
         const dropdown = document.createElement('div');
         dropdown.id = 'searchResults';
         dropdown.className = 'absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-gray-100 max-h-96 overflow-y-auto z-50 hidden';
@@ -79,9 +60,6 @@ const GlobalSearch = {
         this.resultsContainer = dropdown;
     },
 
-    /**
-     * Perform search across all entities
-     */
     performSearch(query) {
         const results = {
             books: Books.search(query).slice(0, 5),
@@ -105,13 +83,9 @@ const GlobalSearch = {
         this.showResults();
     },
 
-    /**
-     * Render search results
-     */
     renderResults(results, query) {
         let html = '';
 
-        // Books
         if (results.books.length > 0) {
             html += this.renderSection('Books', results.books.map(book => ({
                 id: book.id,
@@ -122,7 +96,6 @@ const GlobalSearch = {
             })));
         }
 
-        // Authors
         if (results.authors.length > 0) {
             html += this.renderSection('Authors', results.authors.map(author => ({
                 id: author.id,
@@ -133,7 +106,6 @@ const GlobalSearch = {
             })));
         }
 
-        // Members
         if (results.members.length > 0) {
             html += this.renderSection('Members', results.members.map(member => ({
                 id: member.id,
@@ -144,7 +116,6 @@ const GlobalSearch = {
             })));
         }
 
-        // Categories
         if (results.categories.length > 0) {
             html += this.renderSection('Categories', results.categories.map(cat => ({
                 id: cat.id,
@@ -155,7 +126,6 @@ const GlobalSearch = {
             })));
         }
 
-        // Footer with keyboard shortcut hint
         html += `
             <div class="px-4 py-2 bg-gray-50 border-t border-gray-100 text-xs text-gray-500 flex items-center justify-between">
                 <span>Press <kbd class="px-1.5 py-0.5 bg-gray-200 rounded text-gray-600">↵</kbd> to select</span>
@@ -167,9 +137,6 @@ const GlobalSearch = {
         this.attachResultListeners();
     },
 
-    /**
-     * Render a section of results
-     */
     renderSection(title, items) {
         return `
             <div class="p-2">
@@ -194,9 +161,6 @@ const GlobalSearch = {
         `;
     },
 
-    /**
-     * Render no results message
-     */
     renderNoResults(query) {
         this.resultsContainer.innerHTML = `
             <div class="p-8 text-center">
@@ -209,9 +173,6 @@ const GlobalSearch = {
         `;
     },
 
-    /**
-     * Attach click listeners to result items
-     */
     attachResultListeners() {
         this.resultsContainer.querySelectorAll('.search-result-item').forEach(item => {
             item.addEventListener('click', () => {
@@ -222,17 +183,12 @@ const GlobalSearch = {
         });
     },
 
-    /**
-     * Navigate to a specific item
-     */
     navigateToItem(type, id) {
         this.hideResults();
         document.getElementById('globalSearch').value = '';
 
-        // Navigate to the page and show item
         App.navigateTo(type);
 
-        // After navigation, show the item details
         setTimeout(() => {
             switch (type) {
                 case 'books':
@@ -251,9 +207,6 @@ const GlobalSearch = {
         }, 100);
     },
 
-    /**
-     * Show results dropdown
-     */
     showResults() {
         if (this.resultsContainer) {
             this.resultsContainer.classList.remove('hidden');
@@ -261,9 +214,6 @@ const GlobalSearch = {
         }
     },
 
-    /**
-     * Hide results dropdown
-     */
     hideResults() {
         if (this.resultsContainer) {
             this.resultsContainer.classList.add('hidden');
@@ -271,9 +221,6 @@ const GlobalSearch = {
         }
     },
 
-    /**
-     * Icons for different result types
-     */
     icons: {
         book: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>',
         author: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>',
@@ -282,12 +229,10 @@ const GlobalSearch = {
     }
 };
 
-// Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
     GlobalSearch.init();
 });
 
-// Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = GlobalSearch;
 }

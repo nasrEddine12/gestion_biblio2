@@ -1,12 +1,5 @@
-/**
- * Pages Module
- * CRUD interface pages for each entity
- */
-
 const Pages = {
-    /**
-     * Render Authors page
-     */
+
     authors() {
         const container = document.getElementById('mainContent');
 
@@ -190,9 +183,7 @@ const Pages = {
         });
     },
 
-    /**
-     * Render Categories page
-     */
+
     categories() {
         const container = document.getElementById('mainContent');
 
@@ -369,9 +360,7 @@ const Pages = {
         });
     },
 
-    /**
-     * Render Books page
-     */
+
     books() {
         const container = document.getElementById('mainContent');
 
@@ -614,9 +603,7 @@ const Pages = {
         });
     },
 
-    /**
-     * Render Members page
-     */
+
     members() {
         const container = document.getElementById('mainContent');
 
@@ -833,9 +820,7 @@ const Pages = {
         });
     },
 
-    /**
-     * Render Loans page
-     */
+
     loans() {
         const container = document.getElementById('mainContent');
 

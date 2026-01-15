@@ -1,14 +1,4 @@
-/**
- * UI Components Module
- * Reusable UI components for forms, tables, modals, and notifications
- */
-
 const UI = {
-    /**
-     * Show a toast notification
-     * @param {string} message 
-     * @param {string} type - 'success', 'error', 'warning', 'info'
-     */
     toast(message, type = 'info') {
         const colors = {
             success: 'bg-green-500',
@@ -30,28 +20,21 @@ const UI = {
 
         document.body.appendChild(toast);
 
-        // Animate in
         setTimeout(() => toast.classList.remove('translate-x-full'), 10);
 
-        // Remove after delay
         setTimeout(() => {
             toast.classList.add('translate-x-full');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     },
 
-    /**
-     * Show confirmation modal
-     * @param {Object} options
-     * @returns {Promise<boolean>}
-     */
     confirm(options = {}) {
         const {
             title = 'Confirm Action',
             message = 'Are you sure you want to proceed?',
             confirmText = 'Confirm',
             cancelText = 'Cancel',
-            type = 'danger' // 'danger', 'warning', 'info'
+            type = 'danger'
         } = options;
 
         return new Promise((resolve) => {
@@ -82,7 +65,6 @@ const UI = {
 
             document.body.appendChild(modal);
 
-            // Animate in
             setTimeout(() => {
                 modal.querySelector('#confirmModalContent').classList.remove('scale-95', 'opacity-0');
             }, 10);
@@ -103,16 +85,11 @@ const UI = {
         });
     },
 
-    /**
-     * Show a modal with custom content
-     * @param {Object} options
-     * @returns {Object} Modal controller
-     */
     modal(options = {}) {
         const {
             title = 'Modal',
             content = '',
-            size = 'md', // 'sm', 'md', 'lg', 'xl'
+            size = 'md',
             onClose = () => { }
         } = options;
 
@@ -144,7 +121,6 @@ const UI = {
         document.body.appendChild(modal);
         document.body.style.overflow = 'hidden';
 
-        // Animate in
         setTimeout(() => {
             modal.querySelector('#modalContent').classList.remove('scale-95', 'opacity-0');
         }, 10);
@@ -173,11 +149,6 @@ const UI = {
         };
     },
 
-    /**
-     * Create a data table with sorting, filtering, and pagination
-     * @param {Object} options 
-     * @returns {Object} Table controller
-     */
     dataTable(options = {}) {
         const {
             container,
@@ -326,7 +297,6 @@ const UI = {
 
             container.innerHTML = html;
 
-            // Attach event listeners
             if (searchable) {
                 container.querySelector('#tableSearch')?.addEventListener('input', (e) => {
                     searchQuery = e.target.value;
@@ -414,11 +384,6 @@ const UI = {
         return { setData, refresh, render };
     },
 
-    /**
-     * Create a form with validation
-     * @param {Object} options 
-     * @returns {HTMLElement}
-     */
     form(options = {}) {
         const { fields = [], onSubmit = () => { }, submitText = 'Submit', values = {} } = options;
 
@@ -492,36 +457,23 @@ const UI = {
         return formHtml;
     },
 
-    /**
-     * Get form data as object
-     * @param {HTMLFormElement} form 
-     * @returns {Object}
-     */
     getFormData(form) {
         const formData = new FormData(form);
         const data = {};
         for (const [key, value] of formData.entries()) {
             data[key] = value;
         }
-        // Handle checkboxes
         form.querySelectorAll('input[type="checkbox"]').forEach(cb => {
             data[cb.name] = cb.checked;
         });
         return data;
     },
 
-    /**
-     * Export data to CSV
-     * @param {Array} data 
-     * @param {Array} columns 
-     * @param {string} filename 
-     */
     exportCSV(data, columns, filename = 'export.csv') {
         const headers = columns.map(c => c.label).join(',');
         const rows = data.map(row =>
             columns.map(c => {
                 let val = row[c.key] ?? '';
-                // Escape quotes and wrap in quotes if contains comma
                 if (typeof val === 'string' && (val.includes(',') || val.includes('"'))) {
                     val = `"${val.replace(/"/g, '""')}"`;
                 }
@@ -541,12 +493,6 @@ const UI = {
         URL.revokeObjectURL(url);
     },
 
-    /**
-     * Export data to PDF (simple table format)
-     * @param {Array} data 
-     * @param {Array} columns 
-     * @param {string} title 
-     */
     exportPDF(data, columns, title = 'Export') {
         const printWindow = window.open('', '', 'height=600,width=800');
         printWindow.document.write(`
@@ -585,7 +531,6 @@ const UI = {
     }
 };
 
-// Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = UI;
 }

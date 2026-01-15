@@ -1,14 +1,6 @@
-/**
- * Dashboard Module
- * Statistics, charts, and key indicators for library management
- */
-
-const Dashboard = {
+﻿const Dashboard = {
     charts: {},
 
-    /**
-     * Render the complete dashboard
-     */
     render() {
         const container = document.getElementById('mainContent');
         if (!container) return;
@@ -16,7 +8,7 @@ const Dashboard = {
         const stats = this.getStats();
 
         container.innerHTML = `
-            <!-- Stats Cards -->
+            
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
                 ${this.renderStatCard('Total Books', stats.totalBooks, 'indigo', this.icons.book)}
                 ${this.renderStatCard('Total Members', stats.totalMembers, 'green', this.icons.members)}
@@ -25,7 +17,7 @@ const Dashboard = {
                 ${this.renderStatCard('Categories', stats.totalCategories, 'purple', this.icons.category)}
             </div>
 
-            <!-- Filter Bar -->
+            
             <div class="bg-white rounded-xl shadow-sm p-4 mb-6 border border-gray-100">
                 <div class="flex flex-wrap items-center gap-4">
                     <div class="flex items-center gap-2">
@@ -53,9 +45,9 @@ const Dashboard = {
                 </div>
             </div>
 
-            <!-- Charts Row 1 -->
+            
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                <!-- Books by Category (Bar Chart) -->
+                
                 <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Books by Category</h3>
                     <div class="h-64">
@@ -63,7 +55,7 @@ const Dashboard = {
                     </div>
                 </div>
 
-                <!-- Book Availability (Pie Chart) -->
+                
                 <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Book Availability</h3>
                     <div class="h-64">
@@ -72,9 +64,9 @@ const Dashboard = {
                 </div>
             </div>
 
-            <!-- Charts Row 2 -->
+            
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                <!-- Loan Trends (Line Chart) -->
+                
                 <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Loan Trends</h3>
                     <div class="h-64">
@@ -82,7 +74,7 @@ const Dashboard = {
                     </div>
                 </div>
 
-                <!-- Member Distribution (Donut Chart) -->
+                
                 <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Member Status Distribution</h3>
                     <div class="h-64">
@@ -91,9 +83,9 @@ const Dashboard = {
                 </div>
             </div>
 
-            <!-- Charts Row 3 -->
+            
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                <!-- Overdue Loans (Horizontal Bar) -->
+                
                 <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Overdue Loans by Member</h3>
                     <div class="h-64">
@@ -101,7 +93,7 @@ const Dashboard = {
                     </div>
                 </div>
 
-                <!-- Recent Activity -->
+                
                 <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Recent Activity</h3>
                     <div class="space-y-3 max-h-64 overflow-y-auto" id="recentActivity">
@@ -110,7 +102,7 @@ const Dashboard = {
                 </div>
             </div>
 
-            <!-- Quick Stats Table -->
+            
             <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4">Category Statistics</h3>
                 <div class="overflow-x-auto">
@@ -132,16 +124,11 @@ const Dashboard = {
             </div>
         `;
 
-        // Initialize charts
         this.initCharts();
 
-        // Setup event listeners
         this.setupFilters();
     },
 
-    /**
-     * Get dashboard statistics
-     */
     getStats() {
         const books = Books.getAll();
         const members = Members.getAll();
@@ -161,9 +148,6 @@ const Dashboard = {
         };
     },
 
-    /**
-     * Render a stat card
-     */
     renderStatCard(title, value, color, icon) {
         const colors = {
             indigo: { bg: 'bg-indigo-100', text: 'text-indigo-600' },
@@ -198,9 +182,6 @@ const Dashboard = {
         category: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>'
     },
 
-    /**
-     * Initialize all charts
-     */
     initCharts() {
         this.createBooksByCategoryChart();
         this.createAvailabilityChart();
@@ -209,9 +190,6 @@ const Dashboard = {
         this.createOverdueLoansChart();
     },
 
-    /**
-     * Books by Category - Bar Chart
-     */
     createBooksByCategoryChart() {
         const ctx = document.getElementById('booksByCategoryChart');
         if (!ctx) return;
@@ -265,9 +243,6 @@ const Dashboard = {
         });
     },
 
-    /**
-     * Book Availability - Pie Chart
-     */
     createAvailabilityChart() {
         const ctx = document.getElementById('availabilityChart');
         if (!ctx) return;
@@ -303,9 +278,6 @@ const Dashboard = {
         });
     },
 
-    /**
-     * Loan Trends - Line Chart
-     */
     createLoanTrendsChart() {
         const ctx = document.getElementById('loanTrendsChart');
         if (!ctx) return;
@@ -322,7 +294,6 @@ const Dashboard = {
             const dateStr = date.toISOString().split('T')[0];
             labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
 
-            // Count loans on this day
             const loansOnDay = loans.filter(l => l.loanDate.split('T')[0] === dateStr).length;
             const returnsOnDay = loans.filter(l => l.actualReturnDate && l.actualReturnDate.split('T')[0] === dateStr).length;
 
@@ -371,9 +342,6 @@ const Dashboard = {
         });
     },
 
-    /**
-     * Member Distribution - Donut Chart
-     */
     createMemberDistributionChart() {
         const ctx = document.getElementById('memberDistributionChart');
         if (!ctx) return;
@@ -415,9 +383,6 @@ const Dashboard = {
         });
     },
 
-    /**
-     * Overdue Loans - Horizontal Bar Chart
-     */
     createOverdueLoansChart() {
         const ctx = document.getElementById('overdueLoansChart');
         if (!ctx) return;
@@ -464,9 +429,6 @@ const Dashboard = {
         });
     },
 
-    /**
-     * Render recent activity
-     */
     renderRecentActivity() {
         const loans = Loans.getAll()
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
@@ -504,9 +466,6 @@ const Dashboard = {
         }).join('');
     },
 
-    /**
-     * Render category statistics table
-     */
     renderCategoryStats() {
         const categories = Categories.getAll();
         const books = Books.getAll();
@@ -545,9 +504,6 @@ const Dashboard = {
         }).join('');
     },
 
-    /**
-     * Setup filter event listeners
-     */
     setupFilters() {
         document.getElementById('refreshDashboard')?.addEventListener('click', () => {
             this.destroyCharts();
@@ -566,9 +522,6 @@ const Dashboard = {
         });
     },
 
-    /**
-     * Destroy all charts (for refresh)
-     */
     destroyCharts() {
         Object.values(this.charts).forEach(chart => {
             if (chart && typeof chart.destroy === 'function') {
@@ -579,7 +532,7 @@ const Dashboard = {
     }
 };
 
-// Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = Dashboard;
 }
+
